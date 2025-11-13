@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { api } from "~/trpc/react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
@@ -22,7 +23,7 @@ export default function PublicMenuPage({
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   useEffect(() => {
-    params.then((p) => setRestaurantId(p.restaurantId));
+    void params.then((p) => setRestaurantId(p.restaurantId));
   }, [params]);
   const [showMenuModal, setShowMenuModal] = useState(false);
   const [showQRModal, setShowQRModal] = useState(false);
@@ -179,10 +180,13 @@ export default function PublicMenuPage({
                       </div>
                       {dish.image && (
                         <div className="h-28 w-28 shrink-0 overflow-hidden rounded-xl border-2 border-gray-200 shadow-md">
-                          <img
+                          <Image
                             src={dish.image}
                             alt={dish.name}
+                            width={112}
+                            height={112}
                             className="h-full w-full object-cover"
+                            unoptimized
                           />
                         </div>
                       )}
@@ -292,7 +296,7 @@ export default function PublicMenuPage({
                 />
                 <Button
                   onClick={() => {
-                    navigator.clipboard.writeText(menuUrl);
+                    void navigator.clipboard.writeText(menuUrl);
                     alert("Link copied to clipboard!");
                   }}
                   className="border-2 border-blue-600 bg-blue-600 font-bold text-white shadow-lg hover:bg-blue-700 hover:shadow-xl"

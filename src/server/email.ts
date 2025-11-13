@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { env } from "~/env";
 
-const resend = new Resend(env.RESEND_API_KEY as string);
+const resend = new Resend(env.RESEND_API_KEY);
 
 export async function sendVerificationCode(email: string, code: string) {
   try {

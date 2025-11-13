@@ -124,7 +124,7 @@ export default function DashboardPage() {
                         Name
                       </p>
                       <p className="text-lg font-semibold text-gray-900">
-                        {user.name || (
+                        {user.name ?? (
                           <span className="font-normal text-gray-500 italic">
                             Not set
                           </span>
@@ -136,7 +136,7 @@ export default function DashboardPage() {
                         Country
                       </p>
                       <p className="text-lg font-semibold text-gray-900">
-                        {user.country || (
+                        {user.country ?? (
                           <span className="font-normal text-gray-500 italic">
                             Not set
                           </span>
@@ -177,7 +177,7 @@ export default function DashboardPage() {
                     <Input
                       id="name"
                       name="name"
-                      defaultValue={user.name || ""}
+                      defaultValue={user.name ?? ""}
                       placeholder="Your full name"
                       className="h-11 text-base"
                     />
@@ -192,7 +192,7 @@ export default function DashboardPage() {
                     <Input
                       id="country"
                       name="country"
-                      defaultValue={user.country || ""}
+                      defaultValue={user.country ?? ""}
                       placeholder="Your country"
                       className="h-11 text-base"
                     />
