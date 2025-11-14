@@ -264,14 +264,18 @@ export const menuRouter = createTRPCRouter({
       }
 
       // Update dish
-      const updated = await ctx.db.dish.update({
+      await ctx.db.dish.update({
         where: { id: input.id },
         data: {
           ...(input.name && { name: input.name }),
           ...(input.image !== undefined && { image: input.image }),
-          ...(input.description !== undefined && { description: input.description }),
+          ...(input.description !== undefined && {
+            description: input.description,
+          }),
           ...(input.price !== undefined && { price: input.price }),
-          ...(input.spiceLevel !== undefined && { spiceLevel: input.spiceLevel }),
+          ...(input.spiceLevel !== undefined && {
+            spiceLevel: input.spiceLevel,
+          }),
         },
       });
 
@@ -331,4 +335,3 @@ export const menuRouter = createTRPCRouter({
       return { success: true };
     }),
 });
-
